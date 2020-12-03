@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const dataArray = fs.readFileSync('./input2.txt').toString().split('\n');
+const dataArray = fs.readFileSync('./input/input2.txt').toString().split('\n');
 
 const passwordCounter = (data) => {
   let validPassword = 0;
