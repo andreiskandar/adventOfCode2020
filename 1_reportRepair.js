@@ -199,21 +199,53 @@ const input = `1993
 1050
 1293`;
 
+console.time();
 const getNumbersThenMultiply = (input) => {
   const inputArr = input.split('\n');
 
-  const length = inputArr.length;
-  for (let i = 0; i < length; i++) {
-    for (let j = i + 1; j < length; j++) {
-      for (let k = j + 1; k < length; k++) {
-        const firstNum = parseInt(inputArr[i]);
-        const secondNum = parseInt(inputArr[j]);
-        const thirdNum = parseInt(inputArr[k]);
-        const sum = firstNum + secondNum + thirdNum;
-        if (sum === 2020) {
-          return firstNum * secondNum * thirdNum;
-        }
-      }
+  // const length = inputArr.length;
+  // for (let i = 0; i < length; i++) {
+  //   for (let j = i + 1; j < length; j++) {
+  //     for (let k = j + 1; k < length; k++) {
+  //       const firstNum = parseInt(inputArr[i]);
+  //       const secondNum = parseInt(inputArr[j]);
+  //       const thirdNum = parseInt(inputArr[k]);
+  //       const sum = firstNum + secondNum + thirdNum;
+  //       if (sum === 2020) {
+  //         return firstNum * secondNum * thirdNum;
+  //       }
+  //     }
+  //   }
+  // }
+
+  const numbers = inputArr.map(Number);
+  const pairSum = {};
+  //part 1
+  // for (let number of numbers) {
+  //   const difference = 2020 - number;
+  //   if (numberSet.has(difference)) {
+  //     return number * difference;
+  //   }
+  //   numberSet.add(number);
+  // }
+
+  //part 2
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      const num1 = numbers[i];
+      const num2 = numbers[j];
+      const sum = num1 + num2;
+      pairSum[sum] = [num1, num2];
+    }
+  }
+  for (const num of numbers) {
+    const difference = 2020 - num;
+    if (difference in pairSum) {
+      const [numA, numB] = pairSum[difference];
+      return numA * numB * num;
     }
   }
 };
+
+console.log(getNumbersThenMultiply(input));
+console.timeEnd();

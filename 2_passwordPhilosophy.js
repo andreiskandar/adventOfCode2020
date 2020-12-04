@@ -1,3 +1,4 @@
+console.time();
 const fs = require('fs');
 
 const dataArray = fs.readFileSync('./input/input2.txt').toString().split('\n');
@@ -28,3 +29,5 @@ const passwordCounter = (data) => {
 
   return validPassword;
 };
+
+console.timeEnd();
